@@ -381,6 +381,7 @@ public class FileDetailFragment extends FileFragment implements OnClickListener,
         super.onAttach(context);
         if (context instanceof ToolbarActivity) {
             toolbarActivity = (ToolbarActivity) context;
+            toolbarActivity.hideSortListGroup();
         }
     }
 
@@ -396,7 +397,7 @@ public class FileDetailFragment extends FileFragment implements OnClickListener,
     }
 
     @Override
-    public void onPrepareOptionsMenu(Menu menu) {
+    public void onPrepareOptionsMenu(@NonNull Menu menu) {
         super.onPrepareOptionsMenu(menu);
 
         FileMenuFilter.hideAll(menu);

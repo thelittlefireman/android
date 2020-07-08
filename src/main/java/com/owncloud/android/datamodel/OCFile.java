@@ -74,7 +74,6 @@ public class OCFile implements Parcelable, Comparable<OCFile>, ServerFileInterfa
     private String etag;
     private String etagOnServer;
     private boolean sharedViaLink;
-    private String publicLink;
     private String permissions;
     private String remoteId; // The fileid namespaced by the instance fileId, globally unique
     private boolean updateThumbnailNeeded;
@@ -143,7 +142,6 @@ public class OCFile implements Parcelable, Comparable<OCFile>, ServerFileInterfa
         etag = source.readString();
         etagOnServer = source.readString();
         sharedViaLink = source.readInt() == 1;
-        publicLink = source.readString();
         permissions = source.readString();
         remoteId = source.readString();
         updateThumbnailNeeded = source.readInt() == 1;
@@ -177,7 +175,6 @@ public class OCFile implements Parcelable, Comparable<OCFile>, ServerFileInterfa
         dest.writeString(etag);
         dest.writeString(etagOnServer);
         dest.writeInt(sharedViaLink ? 1 : 0);
-        dest.writeString(publicLink);
         dest.writeString(permissions);
         dest.writeString(remoteId);
         dest.writeInt(updateThumbnailNeeded ? 1 : 0);
@@ -438,7 +435,6 @@ public class OCFile implements Parcelable, Comparable<OCFile>, ServerFileInterfa
         etag = null;
         etagOnServer = null;
         sharedViaLink = false;
-        publicLink = null;
         permissions = null;
         remoteId = null;
         updateThumbnailNeeded = false;
@@ -634,10 +630,6 @@ public class OCFile implements Parcelable, Comparable<OCFile>, ServerFileInterfa
         return this.sharedViaLink;
     }
 
-    public String getPublicLink() {
-        return this.publicLink;
-    }
-
     public String getPermissions() {
         return this.permissions;
     }
@@ -744,10 +736,6 @@ public class OCFile implements Parcelable, Comparable<OCFile>, ServerFileInterfa
 
     public void setSharedViaLink(boolean sharedViaLink) {
         this.sharedViaLink = sharedViaLink;
-    }
-
-    public void setPublicLink(String publicLink) {
-        this.publicLink = publicLink;
     }
 
     public void setPermissions(String permissions) {

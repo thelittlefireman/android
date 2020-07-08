@@ -246,6 +246,10 @@ public abstract class ToolbarActivity extends BaseActivity {
         setPreviewImageVisibility(false);
     }
 
+    public void hideSortListGroup() {
+        findViewById(R.id.sort_list_button_group).setVisibility(View.GONE);
+    }
+
     /**
      * Change the bitmap for the toolbar's preview image.
      *

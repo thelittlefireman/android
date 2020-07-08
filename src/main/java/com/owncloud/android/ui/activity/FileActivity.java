@@ -756,7 +756,7 @@ public abstract class FileActivity extends DrawerActivity
 
         if (result.isSuccess()) {
             if (sharingFragment != null) {
-                sharingFragment.refreshPublicShareFromDB();
+                sharingFragment.refreshSharesFromDB();
                 sharingFragment.onUpdateShareInformation(result, getFile());
             }
         } else {
@@ -771,7 +771,7 @@ public abstract class FileActivity extends DrawerActivity
         if (result.isSuccess()) {
             updateFileFromDB();
             if (sharingFragment != null) {
-                sharingFragment.refreshPublicShareFromDB();
+                sharingFragment.refreshSharesFromDB();
                 sharingFragment.onUpdateShareInformation(result, getFile());
             }
         } else if (sharingFragment != null && sharingFragment.getView() != null) {
@@ -817,7 +817,7 @@ public abstract class FileActivity extends DrawerActivity
             copyAndShareFileLink(this, file, link);
 
             if (sharingFragment != null) {
-                sharingFragment.refreshPublicShareFromDB();
+                sharingFragment.refreshSharesFromDB();
                 sharingFragment.onUpdateShareInformation(result, getFile());
             }
         } else {
@@ -838,7 +838,7 @@ public abstract class FileActivity extends DrawerActivity
 
             } else {
                 if (sharingFragment != null) {
-                    sharingFragment.refreshPublicShareFromDB();
+                    sharingFragment.refreshSharesFromDB();
                 }
                 Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content),
                                                   ErrorMessageAdapter.getErrorCauseMessage(result,
