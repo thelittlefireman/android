@@ -22,7 +22,6 @@
 
 package com.nextcloud.client;
 
-import android.Manifest;
 import android.app.Activity;
 
 import com.owncloud.android.AbstractIT;
@@ -33,17 +32,12 @@ import org.junit.Rule;
 import org.junit.Test;
 
 import androidx.test.espresso.intent.rule.IntentsTestRule;
-import androidx.test.rule.GrantPermissionRule;
 
 
 public class SettingsActivityIT extends AbstractIT {
     @Rule public IntentsTestRule<SettingsActivity> activityRule = new IntentsTestRule<>(SettingsActivity.class,
                                                                                         true,
                                                                                         false);
-
-    @Rule
-    public final GrantPermissionRule permissionRule = GrantPermissionRule.grant(
-        Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
     @Test
     @ScreenshotTest

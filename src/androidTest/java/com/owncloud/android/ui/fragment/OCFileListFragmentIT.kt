@@ -22,11 +22,9 @@
  */
 package com.owncloud.android.ui.fragment
 
-import android.Manifest
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.intent.rule.IntentsTestRule
 import androidx.test.platform.app.InstrumentationRegistry
-import androidx.test.rule.GrantPermissionRule
 import com.nextcloud.client.account.UserAccountManagerImpl
 import com.nextcloud.client.device.BatteryStatus
 import com.nextcloud.client.device.PowerManagementService
@@ -60,9 +58,6 @@ class OCFileListFragmentIT : AbstractOnServerIT() {
 
     @get:Rule
     val activityRule = IntentsTestRule(FileDisplayActivity::class.java, true, false)
-
-    @get:Rule
-    val permissionRule = GrantPermissionRule.grant(Manifest.permission.WRITE_EXTERNAL_STORAGE)
 
     private val connectivityServiceMock: ConnectivityService = object : ConnectivityService {
         override fun isInternetWalled(): Boolean {

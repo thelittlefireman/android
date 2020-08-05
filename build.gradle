@@ -63,7 +63,7 @@ ext {
     markwonVersion =  "4.4.0"
     prismVersion = "2.0.0"
     butterknifeVersion = "10.2.2"
-    androidLibraryVersion = "master-SNAPSHOT"
+    androidLibraryVersion = "allArgsToActivity-SNAPSHOT"
 
     travisBuild = System.getenv("TRAVIS") == "true"
 

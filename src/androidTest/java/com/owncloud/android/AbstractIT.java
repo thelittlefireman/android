@@ -1,5 +1,6 @@
 package com.owncloud.android;
 
+import android.Manifest;
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.accounts.AuthenticatorException;
@@ -22,6 +23,7 @@ import com.nextcloud.client.network.Connectivity;
 import com.nextcloud.client.network.ConnectivityService;
 import com.nextcloud.client.preferences.AppPreferencesImpl;
 import com.nextcloud.client.preferences.DarkMode;
+import com.nextcloud.common.NextcloudClient;
 import com.nextcloud.java.util.Optional;
 import com.owncloud.android.datamodel.FileDataStorageManager;
 import com.owncloud.android.datamodel.OCFile;
@@ -41,6 +43,7 @@ import junit.framework.TestCase;
 
 import org.apache.commons.io.FileUtils;
 import org.junit.BeforeClass;
+import org.junit.Rule;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -52,6 +55,7 @@ import androidx.annotation.NonNull;
 import androidx.test.espresso.contrib.DrawerActions;
 import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.platform.app.InstrumentationRegistry;
+import androidx.test.rule.GrantPermissionRule;
 import androidx.test.runner.lifecycle.ActivityLifecycleMonitorRegistry;
 import androidx.test.runner.lifecycle.Stage;
 
@@ -66,9 +70,12 @@ import static org.junit.Assert.assertTrue;
  */
 
 public abstract class AbstractIT {
-    //@Rule public RetryTestRule retryTestRule = new RetryTestRule();
+    @Rule
+    public final GrantPermissionRule permissionRule = GrantPermissionRule.grant(
+            Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
     protected static OwnCloudClient client;
+    protected static NextcloudClient nextcloudClient;
     protected static Account account;
     protected static User user;
     protected static Context targetContext;
@@ -109,6 +116,7 @@ public abstract class AbstractIT {
             user = optionalUser.orElseThrow(IllegalAccessError::new);
 
             client = OwnCloudClientFactory.createOwnCloudClient(account, targetContext);
+            nextcloudClient = OwnCloudClientFactory.createNextcloudClient(account, targetContext);
         } catch (OperationCanceledException e) {
             e.printStackTrace();
         } catch (AuthenticatorException e) {
